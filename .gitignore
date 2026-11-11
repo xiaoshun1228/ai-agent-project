@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+
+# 虚拟环境
+.venv/
+venv/
+env/
+ENV/
+
+# 环境变量与密钥
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# 本地数据与日志
+*.db
+*.db-shm
+*.db-wal
+*.sqlite3
+*.log
+chat_history.json
+_check_result.txt
+.langgraph_api/
+
+# 编辑器
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
