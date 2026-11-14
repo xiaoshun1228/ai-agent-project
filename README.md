@@ -1,6 +1,6 @@
 # AI 应用开发项目集
 
-三个基于大语言模型（LLM）的 AI 应用项目，覆盖 **对话应用、多角色人设、Agent 工具调用** 三类主流场景。
+四个基于大语言模型（LLM）的 AI 应用项目，覆盖 **对话应用、多角色人设、Agent 工具调用、RAG 知识库问答** 四类主流场景。
 全部使用 Python 开发，独立完成需求设计、编码、调试与部署。
 
 ## 项目列表
@@ -10,6 +10,7 @@
 | [AI 智能对话助手](./ai智能对话助手) | Streamlit + OpenAI SDK + DeepSeek | 多轮对话、流式输出、上下文管理 |
 | [AI 多角色聊天应用](./ai对话女友) | Streamlit + OpenAI SDK + DeepSeek | 多角色人设、本地持久化、对话导出 |
 | [私人厨师 Agent](./ai私人厨师) | FastAPI + LangChain + LangGraph + Qwen | 工具调用、多模态识别、状态持久化 |
+| [员工手册知识库](./handbook-rag) | Streamlit + LangChain + Chroma + Qwen | 数据清洗、RAG 检索、引用溯源 |
 
 ---
 
@@ -54,6 +55,22 @@ streamlit run ai_girlfriend.py
 ```bash
 pip install -r requirements.txt
 uvicorn app.main:app --reload
+```
+
+## 4. 企业员工手册数据清洗与智能问答知识库平台
+
+基于 RAG 的企业手册问答系统：上传文档后自动清洗、分块、向量化入库，员工可用自然语言提问并获得带引用出处的回答。
+
+- **数据清洗流水线**：噪声过滤（页码/目录/符号行）、敏感信息脱敏、重复条款去重
+- **RAG 检索问答**：Chroma 向量检索 Top-K → Prompt 拼装 → Qwen 流式生成
+- **引用溯源**：回答附带命中的文档块，便于核对
+- **防幻觉**：System Prompt 限定只依据参考资料回答，`temperature=0.1`
+- **双页面界面**：问答页 + 知识库管理页（上传、清洗预览、入库）
+
+```bash
+pip install -r requirements.txt
+cp .env.example .env   # 填入 DASHSCOPE_API_KEY
+streamlit run app.py
 ```
 
 ---
