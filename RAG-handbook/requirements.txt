@@ -7,3 +7,5 @@ dashscope>=1.20
 openai>=1.50
 python-dotenv>=1.0
 pypdf>=4.0
+fastapi>=0.110
+uvicorn[standard]>=0.27

@@ -130,6 +130,22 @@ streamlit run app.py
 
 浏览器会自动打开 `http://localhost:8501`。首次启动会自动把 `data/faq.txt` 导入向量库。
 
+### 5. 可选：启动 API 服务
+
+除了网页界面，项目还提供 RESTful 接口（与界面共用同一套核心逻辑）：
+
+```bash
+uvicorn api:app --reload
+```
+
+接口文档：`http://127.0.0.1:8000/docs`
+
+| 方法 | 路径 | 说明 |
+|---|---|---|
+| GET | `/health` | 健康检查，返回 FAQ 条数 |
+| POST | `/ask` | 非流式问答，返回回答和匹配的 FAQ |
+| POST | `/ask/stream` | 流式问答，边生成边返回 |
+
 ---
 
 ## 六、使用说明
