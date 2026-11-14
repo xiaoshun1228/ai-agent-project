@@ -1,0 +1,71 @@
+========================================
+  轻量化大模型评测中台 · 启动说明
+========================================
+
+项目位置：D:\pycharm_work\llm-eval-platform
+
+【一、首次安装】
+
+  1. 进入目录
+     cd D:\pycharm_work\llm-eval-platform
+
+  2. 创建并激活虚拟环境
+     python -m venv .venv
+     .venv\Scripts\activate
+
+  3. 安装依赖
+     pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+  4. 配置密钥
+     copy .env.example .env
+     用记事本打开 .env，填写：
+       DASHSCOPE_API_KEY=你的通义千问Key
+
+  5. 导入示例用例（9 条）
+     python import_sample.py
+
+
+【二、启动方式】
+
+  方式一：Web 界面（推荐）
+     streamlit run app.py
+     浏览器打开：http://localhost:8501
+
+  方式二：API 接口
+     uvicorn api:app --reload
+     接口文档：http://127.0.0.1:8000/docs
+
+  两种方式共用同一个数据库 data/eval.db，可以同时启动。
+
+
+【三、使用流程】
+
+  1. 打开界面 → 「用例管理」
+     查看或新增评测用例（RAG / Agent / 合规）
+
+  2. 「执行评测」
+     勾选用例 → 点开始 → 等待进度条完成
+
+  3. 「结果分析」
+     查看四项指标、按类型/模型对比、导出 CSV
+
+  4. 「人工复核」
+     对评测结果人工打分，数据回流到分析页对比
+
+
+【四、常见问题】
+
+  Q：评测很慢？
+  A：每条用例调用 2 次模型（生成 + 评委），RAG 还要向量化。
+     建议每次 5~10 条。
+
+  Q：数据存在哪？
+  A：data/eval.db（SQLite）。删除该文件可重置所有数据。
+
+  Q：怎么换评委模型？
+  A：修改 .env 里的 JUDGE_MODEL，例如 qwen-max。
+
+  Q：为什么幻觉率要越低越好？
+  A：幻觉率表示编造内容比例，0 表示没有编造。
+
+========================================

@@ -1,7 +1,7 @@
 # AI 应用开发项目集
 
 这是一个包含三个 AI 应用项目的代码仓库，覆盖大模型应用开发的主流方向：
-**语音交互、Agent 工具调用、RAG 知识库问答**。
+**语音交互、RAG 知识库问答、AI 应用评测**。
 
 所有项目均使用 Python 编写，独立完成需求设计、编码、调试与部署，代码带中文注释，便于阅读和讲解。
 
@@ -12,8 +12,8 @@
 | # | 项目 | 一句话说明 | 技术栈 |
 |---|---|---|---|
 | 1 | [AI-voice-customer](./AI-voice-customer) | 按住麦克风说话，听懂问题并语音回答 | Streamlit + DashScope + LangChain + Chroma |
-| 2 | [AI-chef-agent](./AI-chef-agent) | 上传食材照片，自动检索菜谱并打分排序 | FastAPI + LangChain + LangGraph + Qwen |
-| 3 | [RAG-handbook](./RAG-handbook) | 上传企业手册，自动清洗并支持带出处的问答 | Streamlit + LangChain + Chroma + Qwen |
+| 2 | [RAG-handbook](./RAG-handbook) | 上传企业手册，自动清洗并支持带出处的问答 | Streamlit + LangChain + Chroma + Qwen |
+| 3 | [llm-eval-platform](./llm-eval-platform) | RAG / Agent / 合规应用自动化评测与打分 | FastAPI + Streamlit + LLM-as-Judge + SQLite |
 
 ---
 
@@ -31,21 +31,7 @@
 📁 目录：`AI-voice-customer/`
 📄 详细说明：[README](./AI-voice-customer/README.md)
 
-### 2. 私人厨师 Agent
-
-基于 LangChain Agent 的智能食谱推荐服务，体现「工具调用 + 多轮记忆 + 服务化」。
-
-- LangChain `create_agent` 构建 Agent 循环
-- Qwen 多模态模型识别食材照片
-- Tavily 联网检索真实菜谱，避免模型编造
-- LangGraph `SqliteSaver` 持久化会话
-- FastAPI 提供 SSE 流式接口，挂载前端页面
-- 阿里云 OSS 预签名直传图片
-
-📁 目录：`AI-chef-agent/`
-📄 详细说明：[README](./AI-chef-agent/README.md)
-
-### 3. 企业员工手册知识库
+### 2. 企业员工手册知识库
 
 RAG 知识库问答平台，重点体现「数据清洗 + 检索增强 + 引用溯源」。
 
@@ -56,6 +42,21 @@ RAG 知识库问答平台，重点体现「数据清洗 + 检索增强 + 引用�
 
 📁 目录：`RAG-handbook/`
 📄 详细说明：[README](./RAG-handbook/README.md)
+
+### 3. 大模型应用评测中台
+
+面向 RAG / Agent / 客服合规的自动化评测平台，用 LLM-as-Judge 替代人工打分。
+
+- 评测用例管理：增删查、版本管理
+- 三类评测器：RAG 问答、Agent 工具调用、客服合规
+- LLM-as-Judge：召回率、准确率、幻觉率、合规率四项指标
+- 批量执行 + 实时进度
+- 可视化报表：按类型/模型对比、人工 vs 自动对比、趋势
+- 人工复核打分回流
+- 双形态交付：Streamlit 界面 + FastAPI 接口
+
+📁 目录：`llm-eval-platform/`
+📄 详细说明：[README](./llm-eval-platform/README.md)
 
 ---
 
@@ -69,6 +70,7 @@ RAG 知识库问答平台，重点体现「数据清洗 + 检索增强 + 引用�
 | Agent 编排 | LangChain、LangGraph |
 | 向量检索 | Chroma、text-embedding-v4 |
 | 语音能力 | qwen3-omni-flash（识别）、cosyvoice-v2（合成） |
+| 自动评测 | LLM-as-Judge（召回率 / 准确率 / 幻觉率 / 合规率） |
 | 数据持久化 | JSON、SQLite、Chroma |
 | 工程工具 | Git、virtualenv、python-dotenv |
 
@@ -115,8 +117,8 @@ copy .env.example .env
 | 项目 | Web 界面 | API 接口 |
 |---|---|---|
 | [AI-voice-customer](./AI-voice-customer) | `streamlit run app.py` | `uvicorn api:app --reload` |
-| [AI-chef-agent](./AI-chef-agent) | 内置前端页面（随 API 启动） | `uvicorn app.main:app --reload` |
 | [RAG-handbook](./RAG-handbook) | `streamlit run app.py` | `uvicorn api:app --reload` |
+| [llm-eval-platform](./llm-eval-platform) | `streamlit run app.py` | `uvicorn api:app --reload` |
 
 API 启动后，浏览器打开 `http://127.0.0.1:8000/docs` 可查看自动生成的接口文档，并直接在线测试。
 
@@ -133,15 +135,18 @@ API 启动后，浏览器打开 `http://127.0.0.1:8000/docs` 可查看自动生�
 │   ├── data/
 │   ├── README.md
 │   └── requirements.txt
-├── AI-chef-agent/             # 项目 2：私人厨师 Agent
-│   ├── app/
-│   ├── 私人厨师本地运行代码.py
+├── RAG-handbook/              # 项目 2：员工手册知识库
+│   ├── app.py
+│   ├── pages/
+│   ├── core/
 │   ├── README.md
 │   └── requirements.txt
-└── RAG-handbook/              # 项目 3：员工手册知识库
+└── llm-eval-platform/         # 项目 3：大模型应用评测中台
     ├── app.py
+    ├── api.py
     ├── pages/
     ├── core/
+    ├── data/
     ├── README.md
     └── requirements.txt
 ```
