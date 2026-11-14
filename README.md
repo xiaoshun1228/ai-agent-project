@@ -82,7 +82,16 @@ RAG 知识库问答平台，重点体现「数据清洗 + 检索增强 + 引用�
 
 ---
 
-## 五、统一运行方式
+## 五、启动方式
+
+> **说明**：项目支持两种启动方式，二者共用同一套核心逻辑（`core/` 目录），可以单独启动，也可以同时启动（端口不同，互不冲突）。
+
+| 启动方式 | 命令 | 默认端口 | 适用场景 |
+|---|---|---|---|
+| Web 界面 | `streamlit run app.py` | 8501 | 自己使用、演示展示 |
+| API 接口 | `uvicorn api:app --reload` | 8000 | 前后端分离、供其他程序调用 |
+
+### 通用步骤
 
 每个项目都有独立依赖，建议**进入对应目录**后单独创建虚拟环境：
 
@@ -99,11 +108,17 @@ pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 # 3. 配置密钥
 copy .env.example .env
 # 用记事本打开 .env，填入自己的 API Key
-
-# 4. 启动
-streamlit run app.py          # Streamlit 项目
-uvicorn app.main:app --reload # FastAPI 项目
 ```
+
+### 各项目启动命令
+
+| 项目 | Web 界面 | API 接口 |
+|---|---|---|
+| [AI-voice-customer](./AI-voice-customer) | `streamlit run app.py` | `uvicorn api:app --reload` |
+| [AI-chef-agent](./AI-chef-agent) | 内置前端页面（随 API 启动） | `uvicorn app.main:app --reload` |
+| [RAG-handbook](./RAG-handbook) | `streamlit run app.py` | `uvicorn api:app --reload` |
+
+API 启动后，浏览器打开 `http://127.0.0.1:8000/docs` 可查看自动生成的接口文档，并直接在线测试。
 
 ---
 
