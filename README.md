@@ -11,11 +11,10 @@
 
 | # | 项目 | 一句话说明 | 技术栈 |
 |---|---|---|---|
-| 1 | [AI 语音智能客服](./ai智能对话助手) | 按住麦克风说话，听懂问题并语音回答 | Streamlit + DashScope + LangChain + Chroma |
+| 1 | [AI 语音智能客服](./voice-customer-service) | 按住麦克风说话，听懂问题并语音回答 | Streamlit + DashScope + LangChain + Chroma |
 | 2 | [AI 多角色聊天应用](./ai对话女友) | 多套人设切换的聊天应用，聊天记录本地保存 | Streamlit + OpenAI SDK + DeepSeek |
 | 3 | [私人厨师 Agent](./ai私人厨师) | 上传食材照片，自动检索菜谱并打分排序 | FastAPI + LangChain + LangGraph + Qwen |
 | 4 | [员工手册知识库](./handbook-rag) | 上传企业手册，自动清洗并支持带出处的问答 | Streamlit + LangChain + Chroma + Qwen |
-| 5 | [语音客服独立版](./voice-customer-service) | 与项目 1 功能相同，独立环境和目录，便于单独部署 | Streamlit + DashScope + LangChain + Chroma |
 
 ---
 
@@ -30,8 +29,8 @@
 - 语音合成用 `cosyvoice-v2`，回答自动朗读
 - 没有麦克风时支持文字输入
 
-📁 目录：`ai智能对话助手/`
-📄 详细说明：[README](./ai智能对话助手/README.md)
+📁 目录：`voice-customer-service/`
+📄 详细说明：[README](./voice-customer-service/README.md)
 
 ### 2. AI 多角色聊天应用
 
@@ -70,14 +69,6 @@ RAG 知识库问答平台，重点体现「数据清洗 + 检索增强 + 引用�
 
 📁 目录：`handbook-rag/`
 📄 详细说明：[README](./handbook-rag/README.md)
-
-### 5. 语音客服独立版
-
-与项目 1 同源，代码和功能完全一致，独立成一个目录和独立虚拟环境，
-方便单独部署或作为独立作品展示。
-
-📁 目录：`voice-customer-service/`
-📄 详细说明：[README](./voice-customer-service/README.md)
 
 ---
 
@@ -134,7 +125,7 @@ uvicorn app.main:app --reload # FastAPI 项目
 ```
 个人项目/
 ├── README.md                  # 本文件：项目集总览
-├── ai智能对话助手/             # 项目 1：AI 语音智能客服
+├── voice-customer-service/    # 项目 1：AI 语音智能客服
 │   ├── app.py
 │   ├── core/
 │   ├── data/
