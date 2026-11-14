@@ -11,10 +11,10 @@
 
 | # | 项目 | 一句话说明 | 技术栈 |
 |---|---|---|---|
-| 1 | [AI 语音智能客服](./voice-customer-service) | 按住麦克风说话，听懂问题并语音回答 | Streamlit + DashScope + LangChain + Chroma |
+| 1 | [AI语音智能客服助手](./AI语音智能客服助手) | 按住麦克风说话，听懂问题并语音回答 | Streamlit + DashScope + LangChain + Chroma |
 | 2 | [AI 多角色聊天应用](./ai对话女友) | 多套人设切换的聊天应用，聊天记录本地保存 | Streamlit + OpenAI SDK + DeepSeek |
 | 3 | [私人厨师 Agent](./ai私人厨师) | 上传食材照片，自动检索菜谱并打分排序 | FastAPI + LangChain + LangGraph + Qwen |
-| 4 | [员工手册知识库](./handbook-rag) | 上传企业手册，自动清洗并支持带出处的问答 | Streamlit + LangChain + Chroma + Qwen |
+| 4 | [AI企业员工手册数据清洗与智能问答知识库平台](./AI企业员工手册数据清洗与智能问答知识库平台) | 上传企业手册，自动清洗并支持带出处的问答 | Streamlit + LangChain + Chroma + Qwen |
 
 ---
 
@@ -29,8 +29,8 @@
 - 语音合成用 `cosyvoice-v2`，回答自动朗读
 - 没有麦克风时支持文字输入
 
-📁 目录：`voice-customer-service/`
-📄 详细说明：[README](./voice-customer-service/README.md)
+📁 目录：`AI语音智能客服助手/`
+📄 详细说明：[README](./AI语音智能客服助手/README.md)
 
 ### 2. AI 多角色聊天应用
 
@@ -67,8 +67,8 @@ RAG 知识库问答平台，重点体现「数据清洗 + 检索增强 + 引用�
 - 检索 Top-K 拼装 Prompt，回答附带原文出处
 - 资料中没有答案时明确说明，不编造
 
-📁 目录：`handbook-rag/`
-📄 详细说明：[README](./handbook-rag/README.md)
+📁 目录：`AI企业员工手册数据清洗与智能问答知识库平台/`
+📄 详细说明：[README](./AI企业员工手册数据清洗与智能问答知识库平台/README.md)
 
 ---
 
@@ -125,7 +125,7 @@ uvicorn app.main:app --reload # FastAPI 项目
 ```
 个人项目/
 ├── README.md                  # 本文件：项目集总览
-├── voice-customer-service/    # 项目 1：AI 语音智能客服
+├── AI语音智能客服助手/         # 项目 1：AI 语音智能客服
 │   ├── app.py
 │   ├── core/
 │   ├── data/
@@ -140,7 +140,7 @@ uvicorn app.main:app --reload # FastAPI 项目
 │   ├── 私人厨师本地运行代码.py
 │   ├── README.md
 │   └── requirements.txt
-└── handbook-rag/              # 项目 4：员工手册知识库
+└── AI企业员工手册数据清洗与智能问答知识库平台/  # 项目 4：员工手册知识库
     ├── app.py
     ├── pages/
     ├── core/
