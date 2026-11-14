@@ -12,8 +12,8 @@
 | # | 项目 | 一句话说明 | 技术栈 |
 |---|---|---|---|
 | 1 | [AI语音智能客服助手](./AI语音智能客服助手) | 按住麦克风说话，听懂问题并语音回答 | Streamlit + DashScope + LangChain + Chroma |
-| 2 | [AI 多角色聊天应用](./ai对话女友) | 多套人设切换的聊天应用，聊天记录本地保存 | Streamlit + OpenAI SDK + DeepSeek |
-| 3 | [私人厨师 Agent](./ai私人厨师) | 上传食材照片，自动检索菜谱并打分排序 | FastAPI + LangChain + LangGraph + Qwen |
+| 2 | [AI 多角色聊天应用](./AI对话女友) | 多套人设切换的聊天应用，聊天记录本地保存 | Streamlit + OpenAI SDK + DeepSeek |
+| 3 | [私人厨师 Agent](./AI私人厨师) | 上传食材照片，自动检索菜谱并打分排序 | FastAPI + LangChain + LangGraph + Qwen |
 | 4 | [AI企业员工手册数据清洗与智能问答知识库平台](./AI企业员工手册数据清洗与智能问答知识库平台) | 上传企业手册，自动清洗并支持带出处的问答 | Streamlit + LangChain + Chroma + Qwen |
 
 ---
@@ -41,8 +41,8 @@
 - 对话按角色分别保存到本地 JSON，重启不丢
 - 支持导出聊天记录
 
-📁 目录：`ai对话女友/`
-📄 详细说明：[README](./ai对话女友/README.md)
+📁 目录：`AI对话女友/`
+📄 详细说明：[README](./AI对话女友/README.md)
 
 ### 3. 私人厨师 Agent
 
@@ -55,8 +55,8 @@
 - FastAPI 提供 SSE 流式接口，挂载前端页面
 - 阿里云 OSS 预签名直传图片
 
-📁 目录：`ai私人厨师/`
-📄 详细说明：[README](./ai私人厨师/README.md)
+📁 目录：`AI私人厨师/`
+📄 详细说明：[README](./AI私人厨师/README.md)
 
 ### 4. 企业员工手册知识库
 
@@ -131,11 +131,11 @@ uvicorn app.main:app --reload # FastAPI 项目
 │   ├── data/
 │   ├── README.md
 │   └── requirements.txt
-├── ai对话女友/                 # 项目 2：AI 多角色聊天应用
+├── AI对话女友/                 # 项目 2：AI 多角色聊天应用
 │   ├── ai_girlfriend.py
 │   ├── README.md
 │   └── requirements.txt
-├── ai私人厨师/                 # 项目 3：私人厨师 Agent
+├── AI私人厨师/                 # 项目 3：私人厨师 Agent
 │   ├── app/
 │   ├── 私人厨师本地运行代码.py
 │   ├── README.md

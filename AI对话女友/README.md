@@ -59,7 +59,7 @@
 ## 四、项目结构
 
 ```
-ai对话女友/
+AI对话女友/
 ├── ai_girlfriend.py        # 应用主程序（单文件实现）
 ├── chat_history.json       # 聊天记录（首次运行后自动生成）
 ├── requirements.txt
@@ -73,7 +73,7 @@ ai对话女友/
 ### 1. 环境准备
 
 ```bash
-cd ai对话女友
+cd AI对话女友
 python -m venv .venv
 .venv\Scripts\activate
 ```
