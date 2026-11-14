@@ -1,4 +1,11 @@
-#定义模型
+"""多模态私人厨师 Agent（LangGraph 版本示例）。
+
+两种运行方式：
+1. 直接运行本文件：启用本地 SQLite 记忆，并跑一段测试对话
+2. 被 langgraph dev 导入：不启用本地记忆，会话由平台管理
+"""
+
+# 定义模型
 import os
 from langchain.chat_models import init_chat_model
 from langgraph.checkpoint.sqlite import SqliteSaver

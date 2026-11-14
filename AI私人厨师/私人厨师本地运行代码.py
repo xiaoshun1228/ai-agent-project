@@ -1,4 +1,13 @@
-#定义模型
+"""私人厨师 Agent 本地运行脚本。
+
+直接运行即可在终端体验：
+    python 私人厨师本地运行代码.py
+
+与 app/agents/personal_chief_agent.py 相比，这个文件更简单，
+适合快速验证模型、工具和提示词是否工作正常。
+"""
+
+# 定义模型
 import os
 
 from langchain.chat_models import init_chat_model
