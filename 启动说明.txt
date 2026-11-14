@@ -8,14 +8,68 @@
   3. 每个项目都要单独配置 .env（填写 API Key）
 
 
+【启动方式说明】
+
+  本项目集支持两种启动方式：
+
+    一、Web 界面启动：streamlit run app.py
+        适合自己使用、演示、给面试官看效果
+
+    二、API 接口启动：uvicorn api:app --reload
+        适合前后端分离、供其他程序或 App 调用
+
+  说明：
+    · 两种方式共用同一套核心逻辑（core/ 目录）
+    · 可以只启动其中一种，也可以两种同时启动（端口不同，不冲突）
+    · API 接口启动后，浏览器打开 /docs 就能看到自动生成的接口文档
+
+
 ========================================
-项目一：AI 私人厨师（FastAPI 服务）
+项目一：AI-voice-customer（AI 语音智能客服）
 ========================================
 
-目录：AI私人厨师
+支持 Web 界面 和 API 接口 两种启动方式。
 
 第 1 步：进入目录
-  cd AI私人厨师
+  cd AI-voice-customer
+
+第 2 步：创建并激活虚拟环境
+  python -m venv .venv
+  .venv\Scripts\activate
+
+第 3 步：安装依赖
+  pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+第 4 步：配置密钥
+  copy .env.example .env
+  用记事本打开 .env，填写：
+    DASHSCOPE_API_KEY=你的通义千问Key
+
+【启动方式一】Web 界面
+  streamlit run app.py
+
+  访问地址：http://localhost:8501
+  首次启动会自动导入 FAQ 到向量库
+  浏览器会请求麦克风权限，允许后才能语音输入
+
+【启动方式二】API 接口
+  uvicorn api:app --reload
+
+  接口文档：http://127.0.0.1:8000/docs
+  可用接口：
+    GET  /health       健康检查（返回 FAQ 条数）
+    POST /ask          非流式问答（返回回答 + 匹配的 FAQ）
+    POST /ask/stream   流式问答（边生成边返回）
+
+
+========================================
+项目二：AI-chef-agent（AI 私人厨师 Agent）
+========================================
+
+只支持 API 方式启动（FastAPI 服务，同时挂载了前端页面）。
+
+第 1 步：进入目录
+  cd AI-chef-agent
 
 第 2 步：创建并激活虚拟环境
   python -m venv .venv
@@ -31,25 +85,27 @@
     TAVILY_API_KEY=你的Tavily搜索Key
   （图片上传功能还需要配置阿里云 OSS 相关变量，不配也能启动）
 
-第 5 步：启动服务
+【启动方式】API 接口 + 内置前端
   uvicorn app.main:app --reload
 
-访问地址：
-  页面：http://127.0.0.1:8000
+  页面地址：http://127.0.0.1:8000
   接口文档：http://127.0.0.1:8000/docs
 
-停止服务：
-  在终端按 Ctrl + C
+  可用接口：
+    POST   /api/v1/chat/stream       流式对话
+    GET    /api/v1/chat/messages     查询历史消息
+    DELETE /api/v1/chat/messages     清空会话
+    GET    /api/v1/oss/presign       获取图片上传签名
 
 
 ========================================
-项目二：AI 语音智能客服助手（Streamlit）
+项目三：RAG-handbook（企业员工手册知识库）
 ========================================
 
-目录：AI语音智能客服助手
+支持 Web 界面 和 API 接口 两种启动方式。
 
 第 1 步：进入目录
-  cd AI语音智能客服助手
+  cd RAG-handbook
 
 第 2 步：创建并激活虚拟环境
   python -m venv .venv
@@ -63,55 +119,21 @@
   用记事本打开 .env，填写：
     DASHSCOPE_API_KEY=你的通义千问Key
 
-第 5 步：启动应用
+【启动方式一】Web 界面
   streamlit run app.py
 
-访问地址：
-  http://localhost:8501
-  浏览器会提示麦克风权限，点「允许」才能语音输入
+  访问地址：http://localhost:8501
+  首次使用先到「知识库管理」页上传文档或导入示例
+  然后回到首页提问
 
-使用说明：
-  1. 首次启动会自动导入 data/faq.txt 到向量库
-  2. 按住麦克风按钮说话，松开后自动识别
-  3. 也可以直接在底部输入框打字提问
-  4. 左侧可以关闭语音播报
+【启动方式二】API 接口
+  uvicorn api:app --reload
 
-停止服务：
-  在终端按 Ctrl + C
-
-
-========================================
-项目三：AI 企业员工手册知识库（Streamlit）
-========================================
-
-目录：AI企业员工手册数据清洗与智能问答知识库平台
-
-第 1 步：进入目录
-  cd AI企业员工手册数据清洗与智能问答知识库平台
-
-第 2 步：创建并激活虚拟环境
-  python -m venv .venv
-  .venv\Scripts\activate
-
-第 3 步：安装依赖
-  pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
-
-第 4 步：配置密钥
-  copy .env.example .env
-  用记事本打开 .env，填写：
-    DASHSCOPE_API_KEY=你的通义千问Key
-
-第 5 步：启动应用
-  streamlit run app.py
-
-访问地址：
-  http://localhost:8501
-
-使用说明：
-  1. 首次使用先进入「知识库管理」页
-  2. 上传手册文件，或点「导入示例文档」
-  3. 预览清洗效果后，点「导入知识库」
-  4. 回到首页开始提问
+  接口文档：http://127.0.0.1:8000/docs
+  可用接口：
+    GET  /health       健康检查（返回知识库块数）
+    POST /ask          非流式问答（返回回答 + 引用出处）
+    POST /ask/stream   流式问答（边生成边返回）
 
 
 ========================================
@@ -121,9 +143,12 @@
 Q1：提示 pip 不是内部命令？
 A：说明虚拟环境没激活成功，重新执行 .venv\Scripts\activate
 
-Q2：两个 Streamlit 项目同时启动冲突？
-A：默认都用 8501 端口。第二个项目启动时加参数换端口：
-   streamlit run app.py --server.port 8502
+Q2：两个服务端口冲突？
+A：Streamlit 默认 8501，uvicorn 默认 8000，一般不会冲突。
+   如果同一个项目两种方式同时开，互不影响；
+   多个项目同时启动时，给后启动的换端口：
+     streamlit run app.py --server.port 8502
+     uvicorn api:app --port 8001
 
 Q3：提示缺少 API Key？
 A：检查项目目录下的 .env 文件是否存在、变量名是否正确
@@ -138,5 +163,9 @@ A：命令里已经带了清华镜像 -i https://pypi.tuna.tsinghua.edu.cn/simpl
 
 Q6：改了 faq.txt 但回答没变化？
 A：删除项目目录下的 chroma_db 文件夹，重启应用会自动重新导入
+
+Q7：API 接口怎么测试？
+A：启动后打开 http://127.0.0.1:8000/docs，
+   FastAPI 会自动生成交互式文档，可以直接在页面上点「Try it out」测试
 
 ========================================
