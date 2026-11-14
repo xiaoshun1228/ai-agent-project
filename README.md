@@ -7,24 +7,27 @@
 
 | 项目 | 技术栈 | 核心能力 |
 |---|---|---|
-| [AI 智能对话助手](./ai智能对话助手) | Streamlit + OpenAI SDK + DeepSeek | 多轮对话、流式输出、上下文管理 |
+| [AI 语音智能客服](./ai智能对话助手) | Streamlit + DashScope + LangChain + Chroma | 语音识别、语音合成、FAQ 检索 |
 | [AI 多角色聊天应用](./ai对话女友) | Streamlit + OpenAI SDK + DeepSeek | 多角色人设、本地持久化、对话导出 |
 | [私人厨师 Agent](./ai私人厨师) | FastAPI + LangChain + LangGraph + Qwen | 工具调用、多模态识别、状态持久化 |
 | [员工手册知识库](./handbook-rag) | Streamlit + LangChain + Chroma + Qwen | 数据清洗、RAG 检索、引用溯源 |
 
 ---
 
-## 1. AI 智能对话助手
+## 1. AI 语音智能客服
 
-Web 端大模型对话应用，支持多轮上下文、流式输出与自定义系统提示词。
+按住麦克风说话即可咨询的语音客服系统，覆盖语音识别、FAQ 检索、回答生成与语音播报全链路。
 
-- **上下文管理**：使用 `list[dict]` 维护消息历史，设计截断策略（保留最近 N 条）控制 token 消耗
-- **流式输出**：通过 `yield` 生成器逐段接收模型响应，实现打字机效果
-- **健壮性**：API Key 缺失、网络异常均有友好提示
+- **语音识别**：`qwen3-omni-flash` 多模态模型把录音转写成文字
+- **FAQ 检索**：Chroma 向量库检索常见问题，Top-3 作为参考资料
+- **客服回答**：Qwen 依据 FAQ 生成回答，资料中没有的提示转人工，避免编造
+- **语音合成**：`cosyvoice-v2` 把回答朗读出来，支持关闭播报
+- **文字兜底**：没有麦克风时可直接打字提问
 
 ```bash
 pip install -r requirements.txt
-streamlit run 17.ai对话助手.py
+cp .env.example .env   # 填入 DASHSCOPE_API_KEY
+streamlit run app.py
 ```
 
 ## 2. AI 多角色聊天应用
