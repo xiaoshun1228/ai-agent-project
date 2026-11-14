@@ -1,0 +1,142 @@
+========================================
+  AI 应用项目集 · 启动说明
+========================================
+
+通用前提：
+  1. 已安装 Python 3.12 或更高版本
+  2. 首次运行需要联网安装依赖
+  3. 每个项目都要单独配置 .env（填写 API Key）
+
+
+========================================
+项目一：AI 私人厨师（FastAPI 服务）
+========================================
+
+目录：AI私人厨师
+
+第 1 步：进入目录
+  cd AI私人厨师
+
+第 2 步：创建并激活虚拟环境
+  python -m venv .venv
+  .venv\Scripts\activate
+
+第 3 步：安装依赖
+  pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+第 4 步：配置密钥
+  copy .env.example .env
+  用记事本打开 .env，至少填写：
+    DASHSCOPE_API_KEY=你的通义千问Key
+    TAVILY_API_KEY=你的Tavily搜索Key
+  （图片上传功能还需要配置阿里云 OSS 相关变量，不配也能启动）
+
+第 5 步：启动服务
+  uvicorn app.main:app --reload
+
+访问地址：
+  页面：http://127.0.0.1:8000
+  接口文档：http://127.0.0.1:8000/docs
+
+停止服务：
+  在终端按 Ctrl + C
+
+
+========================================
+项目二：AI 语音智能客服助手（Streamlit）
+========================================
+
+目录：AI语音智能客服助手
+
+第 1 步：进入目录
+  cd AI语音智能客服助手
+
+第 2 步：创建并激活虚拟环境
+  python -m venv .venv
+  .venv\Scripts\activate
+
+第 3 步：安装依赖
+  pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+第 4 步：配置密钥
+  copy .env.example .env
+  用记事本打开 .env，填写：
+    DASHSCOPE_API_KEY=你的通义千问Key
+
+第 5 步：启动应用
+  streamlit run app.py
+
+访问地址：
+  http://localhost:8501
+  浏览器会提示麦克风权限，点「允许」才能语音输入
+
+使用说明：
+  1. 首次启动会自动导入 data/faq.txt 到向量库
+  2. 按住麦克风按钮说话，松开后自动识别
+  3. 也可以直接在底部输入框打字提问
+  4. 左侧可以关闭语音播报
+
+停止服务：
+  在终端按 Ctrl + C
+
+
+========================================
+项目三：AI 企业员工手册知识库（Streamlit）
+========================================
+
+目录：AI企业员工手册数据清洗与智能问答知识库平台
+
+第 1 步：进入目录
+  cd AI企业员工手册数据清洗与智能问答知识库平台
+
+第 2 步：创建并激活虚拟环境
+  python -m venv .venv
+  .venv\Scripts\activate
+
+第 3 步：安装依赖
+  pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+第 4 步：配置密钥
+  copy .env.example .env
+  用记事本打开 .env，填写：
+    DASHSCOPE_API_KEY=你的通义千问Key
+
+第 5 步：启动应用
+  streamlit run app.py
+
+访问地址：
+  http://localhost:8501
+
+使用说明：
+  1. 首次使用先进入「知识库管理」页
+  2. 上传手册文件，或点「导入示例文档」
+  3. 预览清洗效果后，点「导入知识库」
+  4. 回到首页开始提问
+
+
+========================================
+常见问题
+========================================
+
+Q1：提示 pip 不是内部命令？
+A：说明虚拟环境没激活成功，重新执行 .venv\Scripts\activate
+
+Q2：两个 Streamlit 项目同时启动冲突？
+A：默认都用 8501 端口。第二个项目启动时加参数换端口：
+   streamlit run app.py --server.port 8502
+
+Q3：提示缺少 API Key？
+A：检查项目目录下的 .env 文件是否存在、变量名是否正确
+
+Q4：Streamlit 报没有 audio_input？
+A：Streamlit 版本太旧，升级：
+   pip install -U streamlit -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+Q5：依赖安装很慢？
+A：命令里已经带了清华镜像 -i https://pypi.tuna.tsinghua.edu.cn/simple
+   不要去掉这个参数
+
+Q6：改了 faq.txt 但回答没变化？
+A：删除项目目录下的 chroma_db 文件夹，重启应用会自动重新导入
+
+========================================

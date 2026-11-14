@@ -79,7 +79,7 @@ Prompt（System 含参考资料）
 ## 四、项目结构
 
 ```
-AI企业员工手册数据清洗与智能问答知识库平台/
+RAG-handbook/
 ├── app.py                    # 问答主界面
 ├── pages/
 │   └── 1_知识库管理.py        # 上传、清洗预览、入库
@@ -107,7 +107,7 @@ AI企业员工手册数据清洗与智能问答知识库平台/
 ### 1. 环境准备
 
 ```bash
-cd AI企业员工手册数据清洗与智能问答知识库平台
+cd RAG-handbook
 python -m venv .venv
 .venv\Scripts\activate
 ```
