@@ -63,7 +63,7 @@
 ## 四、项目结构
 
 ```
-AI语音智能客服助手/
+AI-voice-customer/
 ├── app.py                    # 主界面：录音、对话、播报
 ├── core/
 │   ├── config.py             # 全局配置：读取 .env、统一模型名
@@ -92,7 +92,7 @@ AI语音智能客服助手/
 
 ```bash
 # 进入项目目录
-cd AI语音智能客服助手
+cd AI-voice-customer
 
 # 创建虚拟环境
 python -m venv .venv

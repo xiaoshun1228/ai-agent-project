@@ -64,7 +64,7 @@ SSE 流式返回生成内容
 ## 四、项目结构
 
 ```
-AI私人厨师/
+AI-chef-agent/
 ├── app/
 │   ├── main.py                  # FastAPI 入口、路由挂载、静态文件服务
 │   ├── agents/
@@ -91,7 +91,7 @@ AI私人厨师/
 ### 1. 环境准备
 
 ```bash
-cd AI私人厨师
+cd AI-chef-agent
 python -m venv .venv
 .venv\Scripts\activate
 ```

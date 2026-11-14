@@ -1,7 +1,7 @@
 # AI 应用开发项目集
 
-这是一个包含四个 AI 应用项目的代码仓库，覆盖大模型应用开发的主流方向：
-**对话应用、多角色人设、Agent 工具调用、RAG 知识库问答、语音交互**。
+这是一个包含三个 AI 应用项目的代码仓库，覆盖大模型应用开发的主流方向：
+**语音交互、Agent 工具调用、RAG 知识库问答**。
 
 所有项目均使用 Python 编写，独立完成需求设计、编码、调试与部署，代码带中文注释，便于阅读和讲解。
 
@@ -11,10 +11,9 @@
 
 | # | 项目 | 一句话说明 | 技术栈 |
 |---|---|---|---|
-| 1 | [AI语音智能客服助手](./AI语音智能客服助手) | 按住麦克风说话，听懂问题并语音回答 | Streamlit + DashScope + LangChain + Chroma |
-| 2 | [AI 多角色聊天应用](./AI对话女友) | 多套人设切换的聊天应用，聊天记录本地保存 | Streamlit + OpenAI SDK + DeepSeek |
-| 3 | [私人厨师 Agent](./AI私人厨师) | 上传食材照片，自动检索菜谱并打分排序 | FastAPI + LangChain + LangGraph + Qwen |
-| 4 | [RAG-handbook](./RAG-handbook) | 上传企业手册，自动清洗并支持带出处的问答 | Streamlit + LangChain + Chroma + Qwen |
+| 1 | [AI-voice-customer](./AI-voice-customer) | 按住麦克风说话，听懂问题并语音回答 | Streamlit + DashScope + LangChain + Chroma |
+| 2 | [AI-chef-agent](./AI-chef-agent) | 上传食材照片，自动检索菜谱并打分排序 | FastAPI + LangChain + LangGraph + Qwen |
+| 3 | [RAG-handbook](./RAG-handbook) | 上传企业手册，自动清洗并支持带出处的问答 | Streamlit + LangChain + Chroma + Qwen |
 
 ---
 
@@ -29,22 +28,10 @@
 - 语音合成用 `cosyvoice-v2`，回答自动朗读
 - 没有麦克风时支持文字输入
 
-📁 目录：`AI语音智能客服助手/`
-📄 详细说明：[README](./AI语音智能客服助手/README.md)
+📁 目录：`AI-voice-customer/`
+📄 详细说明：[README](./AI-voice-customer/README.md)
 
-### 2. AI 多角色聊天应用
-
-支持多套人设切换的聊天应用，适合演示「角色扮演 + 上下文管理」。
-
-- 四套预置人设 + 自定义人设
-- `temperature` 滑块调节回复风格
-- 对话按角色分别保存到本地 JSON，重启不丢
-- 支持导出聊天记录
-
-📁 目录：`AI对话女友/`
-📄 详细说明：[README](./AI对话女友/README.md)
-
-### 3. 私人厨师 Agent
+### 2. 私人厨师 Agent
 
 基于 LangChain Agent 的智能食谱推荐服务，体现「工具调用 + 多轮记忆 + 服务化」。
 
@@ -55,10 +42,10 @@
 - FastAPI 提供 SSE 流式接口，挂载前端页面
 - 阿里云 OSS 预签名直传图片
 
-📁 目录：`AI私人厨师/`
-📄 详细说明：[README](./AI私人厨师/README.md)
+📁 目录：`AI-chef-agent/`
+📄 详细说明：[README](./AI-chef-agent/README.md)
 
-### 4. 企业员工手册知识库
+### 3. 企业员工手册知识库
 
 RAG 知识库问答平台，重点体现「数据清洗 + 检索增强 + 引用溯源」。
 
@@ -125,22 +112,18 @@ uvicorn app.main:app --reload # FastAPI 项目
 ```
 个人项目/
 ├── README.md                  # 本文件：项目集总览
-├── AI语音智能客服助手/         # 项目 1：AI 语音智能客服
+├── AI-voice-customer/         # 项目 1：AI 语音智能客服
 │   ├── app.py
 │   ├── core/
 │   ├── data/
 │   ├── README.md
 │   └── requirements.txt
-├── AI对话女友/                 # 项目 2：AI 多角色聊天应用
-│   ├── ai_girlfriend.py
-│   ├── README.md
-│   └── requirements.txt
-├── AI私人厨师/                 # 项目 3：私人厨师 Agent
+├── AI-chef-agent/             # 项目 2：私人厨师 Agent
 │   ├── app/
 │   ├── 私人厨师本地运行代码.py
 │   ├── README.md
 │   └── requirements.txt
-└── RAG-handbook/              # 项目 4：员工手册知识库
+└── RAG-handbook/              # 项目 3：员工手册知识库
     ├── app.py
     ├── pages/
     ├── core/
